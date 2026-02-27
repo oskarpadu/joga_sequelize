@@ -14,12 +14,33 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Article.init({
-    id: DataTypes.INTEGER,
-    name: DataTypes.STRING,
-    slug: DataTypes.STRING,
-    image: DataTypes.STRING,
-    body: DataTypes.TEXT,
-    published: DataTypes.DATE,
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    slug: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    body: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    published: {
+      type: DataTypes.DATE,
+      allowNull: false
+    }, 
     author_id: DataTypes.INTEGER
   }, {
     sequelize,

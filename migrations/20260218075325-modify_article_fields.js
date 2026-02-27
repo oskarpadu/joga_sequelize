@@ -4,18 +4,18 @@ module.exports = {
   up (queryInterface, Sequelize) {
     return Promise.all([
       queryInterface.changeColumn('Articles', 'id', {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
         allowNull: false
       }),
       queryInterface.changeColumn('Articles', 'name', {
         type: Sequelize.STRING,
         allowNull: false
-      })
+      }),
       queryInterface.changeColumn('Articles', 'slug', {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
         unique: true
       }),
       queryInterface.changeColumn('Articles', 'image', {
@@ -38,3 +38,10 @@ module.exports = {
 
     ]);
   },
+
+  down (queryInterface) {
+    return Promise.all([
+      queryInterface.dropTable('Articles')
+    ]);
+  }
+};
